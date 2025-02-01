@@ -40,16 +40,28 @@ class FAQ(models.Model):
         translator = Translator()
 
         # Translate question if translations are missing
-        if not self.question_hi:
-            self.question_hi = translator.translate(self.question, dest='hi').text
-        if not self.question_bn:
-            self.question_bn = translator.translate(self.question, dest='bn').text
+        if not self.question_hi and self.question:
+            try:
+                self.question_hi = translator.translate(self.question, dest='hi').text
+            except Exception as e:
+                print(f"Error while translating question to Hindi: {e}")
+        if not self.question_bn and self.question:
+            try:
+                self.question_bn = translator.translate(self.question, dest='bn').text
+            except Exception as e:
+                print(f"Error while translating question to Bengali: {e}")
 
         # Translate answer if translations are missing
-        if not self.answer_hi:
-            self.answer_hi = translator.translate(self.answer, dest='hi').text
-        if not self.answer_bn:
-            self.answer_bn = translator.translate(self.answer, dest='bn').text
+        if not self.answer_hi and self.answer:
+            try:
+                self.answer_hi = translator.translate(self.answer, dest='hi').text
+            except Exception as e:
+                print(f"Error while translating answer to Hindi: {e}")
+        if not self.answer_bn and self.answer:
+            try:
+                self.answer_bn = translator.translate(self.answer, dest='bn').text
+            except Exception as e:
+                print(f"Error while translating answer to Bengali: {e}")
 
         # Call the superclass save method to save the object
         super().save(*args, **kwargs)
