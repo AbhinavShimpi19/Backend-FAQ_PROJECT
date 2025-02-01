@@ -23,7 +23,7 @@ Follow these steps to get the project up and running locally.
 
 1. **Clone the repository**:
     ```bash
-    git clone <repo_url>
+    git clone [<repo_url>](https://github.com/AbhinavShimpi19/Backend-FAQ_PROJECT.git)
     cd faq_project
     ```
 
